@@ -1,0 +1,3 @@
+wss_port = 2700
+osc_port = 9000
+debug = false
