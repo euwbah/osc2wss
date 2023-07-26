@@ -18,17 +18,21 @@ In the far future, when Algoraves (Audio-Visual livecoding in front of an audien
 
 ## How to use
 
-1. Download the project's source.
-   Otherwise, [Build from source](#build-instructions).
-2. Modify [`config.toml`](./config.toml) to reflect the desired OSC port to receive from, and the WebSocket port to serve to.
-3. Run the executable.
-4. ⚠️ **Before connecting to the websocket, you are required to trust the self-signed certificate in your browser**.
+1. Clone the repo or [download](https://github.com/euwbah/osc2wss/archive/refs/heads/master.zip) the project's source.
+2. Modify [`config.toml`](./config.toml) to select the desired OSC port to receive incoming OSC messages from, and the WebSocket port to serve to.
+   - Default OSC port is `9000`
+   - Default WSS port is `2700`
+3. Install `rustc` and `cargo` here https://rustup.rs/
+4. Install [requirements](#requirements).
+5. `cd path/to/project/directory` --- go to project directory in terminal
+6. `cargo run --release` --- start the server
+7. ⚠️ **Before a client can connect to the websocket, you are required to trust the self-signed certificate in your browser**.
    - Once the WebSocket server is running, key in the local IP address of the device running the WebSocket server into the browser URL and try to access the README.md file: 
    - e.g. if your server's local IP address is `10.0.0.2` and is hosted on port 2700 as per [`config.toml`](./config.toml) try to access `https://10.0.0.2:2700/README.md`
    - You should get a warning message about the certificate being from a non-trusted authority.
    - Trust the certificate by clicking Advanced > Proceed to unsafe (this differs depending on your browser).
    - You will need to repeat this step every time the WebSocket server is restarted as it generates new certs every time.
-5. After doing the above, you should be able to retrieve OSC messages like so:
+8. After doing the above, you should be able to retrieve OSC messages like so:
 
 ```js
 // exclude 'let' if making a top-level variable in Hydra.
@@ -48,7 +52,7 @@ The above OSC `data` object should be almost identical to that of [OSC.js](https
 
 ## Requirements
 
-`openssl` must be installed.
+### 1. `openssl`
 
 On Windows, using the [chocolatey](https://chocolatey.org/install) package manager is recommended.
 
@@ -58,9 +62,6 @@ On Windows, using the [chocolatey](https://chocolatey.org/install) package manag
   - `OPENSSL_CFG` should point to `/path/to/openssl/bin/openssl.cfg`
   - `OPENSSL_DIR` should point to `/path/to/openssl/`
   - `PATH` should contain `/path/to/openssl/bin/`
-
-
-
 
 ## Build instructions
 

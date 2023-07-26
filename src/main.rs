@@ -92,7 +92,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .expect(&format!("Failed to bind osc listener at {}", osc_addr));
 
     // internal broadcast channels
-    let (osc_tx, mut osc_rx) = broadcast::channel(16);
+    let (osc_tx, mut _osc_rx) = broadcast::channel(16);
     let osc_tx_for_subscribing = osc_tx.clone();
 
     tokio::task::spawn(async move {
